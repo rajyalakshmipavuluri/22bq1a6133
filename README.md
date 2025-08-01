@@ -10,7 +10,10 @@ This project is a simple URL shortener built using Python and the Flask web fram
 - Handles errors such as invalid input, duplicate shortcodes, and expired links
 - Logs all requests and responses for monitoring
 
+
 ### How It Works
+
+![Architecture Diagram](BackendTestSubmission/architecture.png)
 
 1. The user sends a POST request with a URL (and optionally a custom shortcode and validity period).
 2. The application stores the original URL, shortcode, and expiration time in a SQLite database.
