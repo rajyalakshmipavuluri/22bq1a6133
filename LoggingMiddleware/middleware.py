@@ -1,7 +1,7 @@
 from flask import request
 
-def register_logging_middleware(app):
-    # Log incoming requests
+def logging_middleware(app):
+    # Logging the incoming requests
     @app.before_request
     def _log_incoming():
         method = request.method
@@ -12,7 +12,7 @@ def register_logging_middleware(app):
             body = None
         app.logger.info(f"Request: method={method}, path={path}, body={body}")
 
-    # Log outgoing responses
+    # Logging the outgoing responses
     @app.after_request
     def _log_outgoing(response):
         status = response.status
@@ -20,7 +20,7 @@ def register_logging_middleware(app):
         app.logger.info(f"Response: status={status}, data={data}")
         return response
 
-    # Log teardown events (errors)
+    # Logging teardown events (if errors occur)
     @app.teardown_request
     def _log_teardown(error=None):
         if error is not None:
